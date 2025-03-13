@@ -50,5 +50,3 @@ class PointNetPlusEncoder(nn.Module):
         mu_1d, sigma_1d = features[:, :self.zdim], features[:, self.zdim:]
         output.update({'mu_1d': mu_1d, 'sigma_1d': sigma_1d})
         return output 
-
-

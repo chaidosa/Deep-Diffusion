@@ -98,7 +98,7 @@ latent_pts:
   pvd_mse_loss: 1
   skip_weight: 0.01
   style_dim: 128
-  style_encoder: models.shapelatent_modules.PointNetPlusEncoder
+  style_encoder: models.KPConvEncoder.KPConvEncoder #models.shapelatent_modules.PointNetPlusEncoder
   style_mlp: ''
   style_prior: models.score_sde.resnet.PriorSEDrop
   use_linear_for_adagn: 0

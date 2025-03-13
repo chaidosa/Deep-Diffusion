@@ -15,7 +15,7 @@ fi
 
 ENT="python train_dist.py --num_process_per_node $NGPU "
 kl=0.5  
-lr=1e-3
+lr=1e-5
 latent=1
 skip_weight=0.01 
 sigma_offset=6.0
@@ -31,14 +31,14 @@ $ENT ddpm.num_steps 1 ddpm.ema 0 \
     trainer.opt.beta2 0.99 \
     data.num_workers 4 \
     ddpm.loss_weight_emd 1.0 \
-    trainer.epochs 8000 data.random_subsample 1 \
+    trainer.epochs 20 data.random_subsample 1 \
     viz.viz_freq -400 viz.log_freq -1 viz.val_freq 200 \
     data.batch_size $BS viz.save_freq 2000 \
     trainer.type 'trainers.hvae_trainer' \
     model_config default shapelatent.model 'models.vae_adain' \
     shapelatent.decoder_type 'models.latent_points_ada.LatentPointDecPVC' \
     shapelatent.encoder_type 'models.latent_points_ada.PointTransPVC' \
-    latent_pts.style_encoder 'models.shapelatent_modules.PointNetPlusEncoder' \
+    latent_pts.style_encoder 'models.kpconv_encoder.KPConvEncoder' \
     shapelatent.prior_type normal \
     shapelatent.latent_dim $latent trainer.opt.lr $lr \
     shapelatent.kl_weight ${kl} \

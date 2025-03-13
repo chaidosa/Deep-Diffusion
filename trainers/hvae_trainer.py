@@ -121,6 +121,7 @@ class Trainer(BaseTrainer):
             self.grad_scalar.scale(loss).backward()
             utils.average_gradients(self.model.parameters(),
                                     self.args.distributed)
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0) # new
             if self.cfg.trainer.opt.grad_clip > 0:
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(),
                                                max_norm=self.cfg.trainer.opt.grad_clip)

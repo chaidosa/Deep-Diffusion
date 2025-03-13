@@ -565,4 +565,3 @@ def create_pointnet2_fp_modules(fp_blocks, in_channels, sa_in_channels, embed_di
         c += 1
 
     return fp_layers, in_channels
-
